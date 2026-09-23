@@ -1,0 +1,35 @@
+name: Audit
+
+# Every change to the cask — including the bump pull requests tracklaude's release
+# workflow opens — must pass Homebrew's own style and audit before it is merged.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: macos-14
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      # Why a symlink: `brew audit` only accepts casks from a tap, and linking the
+      # checkout into place audits exactly the commit under review.
+      - name: Tap this checkout
+        run: |
+          taps="$(brew --repository)/Library/Taps/adios-404"
+          mkdir -p "$taps"
+          ln -s "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
+
+      - name: Style
+        run: brew style adios-404/tap
+
+      # Not `--online` yet: tracklaude's Releases are private until v1.0, so the
+      # download URL answers 404 to anyone unauthenticated, Homebrew included.
+      - name: Audit
+        run: brew audit --cask --strict adios-404/tap/tracklaude
