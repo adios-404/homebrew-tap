@@ -31,5 +31,9 @@ jobs:
 
       # `--online` also fetches the cask's url and homepage, so a bump that names a
       # Release which does not exist (or is not public) fails here, before merge.
+      # Why the token: `--online` calls the GitHub API, and unauthenticated calls share the
+      # runner IP's 60 per hour — a bump PR failed on that once (2026-10-03), not on the cask.
       - name: Audit
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
         run: brew audit --cask --strict --online adios-404/tap/tracklaude
