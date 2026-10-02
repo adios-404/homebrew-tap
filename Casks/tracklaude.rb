@@ -20,7 +20,7 @@ cask "tracklaude" do
 
   caveats <<~EOS
     tracklaude is ad-hoc signed and not notarized, so macOS blocks the first launch.
-    Open it once by hand (one time per version):
+    Open it once by hand (an update may ask again):
       macOS 14:  Control-click tracklaude.app in /Applications, then Open, then Open.
       macOS 15+: open it, dismiss the warning, then System Settings > Privacy & Security
                  > Open Anyway.
