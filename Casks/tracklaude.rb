@@ -24,9 +24,9 @@ cask "tracklaude" do
       macOS 14:  Control-click tracklaude.app in /Applications, then Open, then Open.
       macOS 15+: open it, dismiss the warning, then System Settings > Privacy & Security
                  > Open Anyway.
-    Then the Keychain asks for your login password twice: on the first launch after you
-    sign in, and again after each update. Enter it both times; it is expected (each
-    version has a new code hash, and your saved sign-in is bound to it).
+    After each update, the new version's first launch asks for your login password twice
+    (the Keychain, not the app). Enter it both times; it is expected: each version has a
+    new code hash, and your saved sign-in is bound to it. A first sign-in does not ask.
     Why, and how to check the download matches what CI built:
       https://github.com/adios-404/tracklaude#install
 
