@@ -29,7 +29,7 @@ jobs:
       - name: Style
         run: brew style adios-404/tap
 
-      # Not `--online` yet: tracklaude's Releases are private until v1.0, so the
-      # download URL answers 404 to anyone unauthenticated, Homebrew included.
+      # `--online` also fetches the cask's url and homepage, so a bump that names a
+      # Release which does not exist (or is not public) fails here, before merge.
       - name: Audit
-        run: brew audit --cask --strict adios-404/tap/tracklaude
+        run: brew audit --cask --strict --online adios-404/tap/tracklaude
