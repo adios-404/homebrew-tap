@@ -1,6 +1,6 @@
 cask "tracklaude" do
-  version "1.0.2"
-  sha256 "b101348f79920a97ad4a9074c2391c840cf3c91870f44e18b2700a4e005b50d4"
+  version "1.0.3"
+  sha256 "8f4a71761272d25aef60c1642f091cc0b10a110b6eff5a864067f9507041bafd"
 
   url "https://github.com/adios-404/tracklaude/releases/download/v#{version}/tracklaude-v#{version}.zip"
   name "tracklaude"
